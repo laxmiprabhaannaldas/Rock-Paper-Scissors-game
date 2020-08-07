@@ -16,7 +16,7 @@ function play(e) {
     const computerChoice = getComputerChoice();
 
     const winner = getWinner(playerChoice, computerChoice);
-    console.log(playerChoice, computerChoice, winner);
+    showWinner(winner, computerChoice);
 }
 
 //get compters choice
@@ -53,6 +53,32 @@ function getWinner(p, c) {
             return 'player';
         }
     }
+}
+
+function showWinner(winner, computerChoice) {
+    if (winner === 'player') {
+        //Increment player score
+        scoreboard.player++;
+        //show Model result
+        result.innerHTML = `
+            <h1 class="text-win">You Win</h1>
+            <i class="fas fa-hand-${computerChoice} fa-10x"></i>
+            <p>Computer Choose <strong>${computerChoice}</strong></p>
+            `;
+    } else {
+        result.innerHTML = `
+        <h1>It's a draw</h1>
+        <i class="fas fa-hand-${computerChoice} fa-10x"></i>
+        <p>Computer Choose <strong>${computerChoice}</strong></p>
+        `;
+    }
+    //show score
+    score.innerHTML = `
+    <p>Player:${scoreboard.player}</p>
+    <p>Computer:${scoreboard.computer}</p>
+    `;
+
+    model.style.display = 'block';
 }
 
 //Event Listeners
