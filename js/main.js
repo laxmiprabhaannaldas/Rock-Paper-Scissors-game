@@ -65,21 +65,36 @@ function showWinner(winner, computerChoice) {
             <i class="fas fa-hand-${computerChoice} fa-10x"></i>
             <p>Computer Choose <strong>${computerChoice}</strong></p>
             `;
-    } else {
+    } else if (winner === 'computer') {
+        // Inc computer score
+        scoreboard.computer++;
+        // Show modal result
         result.innerHTML = `
-        <h1>It's a draw</h1>
+        <h1 class="text-lose">You Lose</h1>
         <i class="fas fa-hand-${computerChoice} fa-10x"></i>
-        <p>Computer Choose <strong>${computerChoice}</strong></p>
+        <p> Computer Choose <strong> ${ computerChoice } </strong></p>
         `;
+    } else {
+        result.innerHTML = ` 
+        <h1> It 's a draw</h1> 
+        <i class = "fas fa-hand-${computerChoice} fa-10x" > </i> 
+        <p> Computer Choose <strong> ${ computerChoice } </strong></p>
+            `;
     }
     //show score
-    score.innerHTML = `
-    <p>Player:${scoreboard.player}</p>
-    <p>Computer:${scoreboard.computer}</p>
-    `;
+    score.innerHTML = ` 
+            <p> Player: ${ scoreboard.player } </p> 
+            <p> Computer: ${ scoreboard.computer } </p>
+        `;
 
     model.style.display = 'block';
 }
-
+//Clear model
+function clearModel(e) {
+    if (e.target == model) {
+        model.style.display = 'none';
+    }
+}
 //Event Listeners
 choices.forEach(choice => choice.addEventListener('click', play));
+window.addEventListener('click', clearModel);
