@@ -89,6 +89,15 @@ function showWinner(winner, computerChoice) {
 
     model.style.display = 'block';
 }
+//restart game function
+function restartGame() {
+    scoreboard.player = 0;
+    scoreboard.computer = 0;
+    score.innerHTML = `
+    <p>Player: 0</p>
+    <p>Computer: 0</p>
+    `;
+}
 //Clear model
 function clearModel(e) {
     if (e.target == model) {
@@ -98,3 +107,4 @@ function clearModel(e) {
 //Event Listeners
 choices.forEach(choice => choice.addEventListener('click', play));
 window.addEventListener('click', clearModel);
+restart.addEventListener('click', restartGame);
